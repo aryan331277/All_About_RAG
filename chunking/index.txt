@@ -1,0 +1,34 @@
+The 18 chunking techniques:
+
+Fixed Size
+
+Fixed tokens
+
+Fixed words
+
+Fixed sentences
+
+Overlap
+4. Sliding window
+5. Dynamic overlap
+
+Semantic-Aware
+6. Sentence-boundary
+7. Paragraph chunking
+8. Semantic similarity
+9. Topic-based
+
+Structure-Aware
+10. HTML/Markdown structural
+11. Section-header
+12. Table-aware
+
+Adaptive Neural
+13. LLM-guided chunks
+14. Query-aware chunks
+15. Memory-adaptive chunking
+
+Graph-Based
+16. Node-level chunks
+17. Hierarchical (TreeRAG)
+18. Linked/Reference-aware
