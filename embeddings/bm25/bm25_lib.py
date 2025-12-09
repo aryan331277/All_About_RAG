@@ -5,7 +5,7 @@ import re
 docs=[#define document here]
 tokenized=[word_tokenize(doc.lower()) for doc in docs]#tokenised documents
 
-bm25=BM25OKapi(tokenized)
+bm25=BM25Okapi(tokenized)
 
 query=""#define the query here
 query_tokenized=word_tokenize(query.lower())
