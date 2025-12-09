@@ -1,0 +1,55 @@
+A. General Purpose (English)
+
+all-MiniLM-L6-v2
+
+all-mpnet-base-v2
+
+all-distilroberta-v1
+
+multi-qa-MiniLM-L6-cos-v1
+
+multi-qa-mpnet-base-dot-v1
+
+multi-qa-distilbert-cos-v1
+
+gtr-t5-base
+
+gtr-t5-large
+
+e5-small-v2
+
+e5-base-v2
+
+e5-large-v2
+
+bge-small-en-v1.5
+
+bge-base-en-v1.5
+
+bge-large-en-v1.5
+
+gte-base
+
+gte-large
+
+nomic-embed-text-v1
+
+voyage-2 (proprietary but SOTA)
+
+openai text-embedding-3-large
+
+openai text-embedding-3-small
+
+B. Multilingual Models
+
+paraphrase-multilingual-mpnet-base-v2
+
+distiluse-base-multilingual-v2
+
+LaBSE
+
+bge-m3 (multi-task, hybrid, multilingual)
+
+e5-mistral-7b-instruct (emerges from LLM)
+
+mcontriever (meta multilingual retriever)
