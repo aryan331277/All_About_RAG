@@ -1,6 +1,7 @@
 import re
 docs=[]
 def table_aware(text):
+  chunks = [] 
   parts = re.split(r'(\|.+\|[\s\S]+?\n\n)', text)
   for part in parts:
     if part.strip():
