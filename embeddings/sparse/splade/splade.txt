@@ -1,4 +1,4 @@
 Splade
 Splade++
-DistiSplade
+DistilSplade
 Ensemble
