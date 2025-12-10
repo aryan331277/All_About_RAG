@@ -1,3 +1,5 @@
+import re
+docs=[]
 def chunk_by_sliding_window(text,window_size,overlap):
   tokens= text.split()# can tokenise in any way using the simplest here
   chunks = []
@@ -5,4 +7,8 @@ def chunk_by_sliding_window(text,window_size,overlap):
   for i in range(0, len(tokens), step):
     chunk=''.join(tokens[i:i+window_size])
     chunk.append(chunk)
+    if i+window_size>=len(tokens):
+      break
   return chunks
+
+result= chunk_by_sliding_window(docs,100,20)
