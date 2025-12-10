@@ -2,11 +2,11 @@ from sentence_transformers import SentenceTransformer
 import faiss
 import numpy as np
 
-docs=[#documents here]
+chunks=[#documents here]
 
 model=SentenceTransformer('all-MiniLM-L6-v2')
 
-embeddings=model.encode(docs)
+embeddings=model.encode(chunks)
 
 dim=embeddings.shape[1]#dimensions of embeddings
 index =faiss.IndexFlatIP(dim)#cosine sim
@@ -23,4 +23,4 @@ distances, indices =index.search(qembedding,3)#search for faiss index here 3 top
 # Print results
 print(f"Query: {query}\n")
 for i, (distance, idx) in enumerate(zip(distances[0], indices[0]), start=1):
-    print(f"Rank {i} (similarity={distance:.4f}): {docs[idx]}")
+    print(f"Rank {i} (similarity={distance:.4f}): {chunks[idx]}")
