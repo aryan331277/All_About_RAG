@@ -23,3 +23,14 @@ def bm25(text):
     qtokens=text.lower().split()
     scores= bm25.get_scores(qtokens)
     return {i: float(s) for i, s in enumerate(scores) if s > 0}
+
+w = weaviate.connect_to_local()
+w.collections.create(name="Docs", vectorizer_config=None)
+coll = w.collections.get("Docs")
+
+for chunk in all_chunks:
+    sparse = get_bm25_sparse(chunk)
+    coll.data.insert(
+        properties={"text": chunk},
+        vector=sparse  # Weaviate can take sparse as vector
+    )
