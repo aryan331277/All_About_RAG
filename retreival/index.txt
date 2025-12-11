@@ -3,10 +3,10 @@ Learned sparse
 Hybrid fusion
 ColBERT late-interaction (rare)
 Cross-encoder rerank
-LLM rerank (no)
+LLM rerank 
 Multi-stage
 HyDE / expansion
-Multi-hop (no)
+Multi-hop 
 Session history
 MMR diversity
 Time-aware
