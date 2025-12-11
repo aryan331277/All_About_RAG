@@ -1,1 +1,15 @@
-
+Dense ANN
+Learned sparse
+Hybrid fusion
+ColBERT late-interaction (rare)
+Cross-encoder rerank
+LLM rerank (no)
+Multi-stage
+HyDE / expansion
+Multi-hop (no)
+Session history
+MMR diversity
+Time-aware
+Agents
+Metadata / tenant filtering
+Payload-based rescoring / boosting 
