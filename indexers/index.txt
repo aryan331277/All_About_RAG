@@ -1,0 +1,6 @@
+Indexers covered
+Qdrant
+OpenSearch
+Vespa
+Weaviate
+PineCone
