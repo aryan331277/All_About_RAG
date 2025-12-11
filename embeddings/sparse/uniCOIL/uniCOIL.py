@@ -16,7 +16,7 @@ def coil(name,wt_exp):
       for i,w in zip(tokens[1:-1],weights[1:-1]):
         if w>0:
           tid = int(i.item())
-          sparse[tid]=sparse.get(tid,0)+float(w.item())
+          sparse[tid]=sparse.get(tid,0.0)+float(w.item())
         return sparse
   return encode
 
