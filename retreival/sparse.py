@@ -45,3 +45,14 @@ for i, chunk in enumerate(all_chunks):
             }
         }]
     )
+
+def sparse_retrieval(query, top_k=5):
+    results = client.search(
+        collection_name="docs",
+        query_vector=("sparse", get_learned_sparse(query)),
+        limit=top_k
+    )
+    return [(r.payload["text"], r.score) for r in results]
+
+for text, score in sparse_retrieval("neural matching models"):
+    print(f"  {score:.4f}: {text}")
