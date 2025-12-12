@@ -1,3 +1,6 @@
+import re
+docs = [] 
+
 def chunk_llm_guided(text,ts):
     sentences=re.split(r'(?<=[.!?])\s+', text.strip())
     chunks=[]
