@@ -1,3 +1,11 @@
+from rank_bm25 import BM25Okapi
+from qdrant_client import QdrantClient
+from qdrant_client.http.models import Distance, VectorParams, SparseVectorParams, Filter, FieldCondition, Range
+from sentence_transformers import SentenceTransformer, CrossEncoder
+import numpy as np
+import torch
+from transformers import AutoTokenizer, AutoModel
+
 docs = []
 
 def chunk_by_tokens(text,token_size=50):
@@ -65,3 +73,13 @@ for i, chunk in enumerate(all_chunks):
         }]
     )
 
+def dense_retrieval(query, top_k=5):
+    results=client.search(
+        collection_name="docs",
+        query_vector=("dense",get_dense(query)),
+        limit=top_k
+    )
+    return [(r.payload["text"], r.score) for r in results]
+
+for text, score in dense_retrieval("neural matching models"):
+    print(f"  {score:.4f}: {text}")
