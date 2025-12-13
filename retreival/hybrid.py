@@ -5,6 +5,8 @@ from sentence_transformers import SentenceTransformer, CrossEncoder
 import numpy as np
 import torch
 from transformers import AutoTokenizer, AutoModel
+from qdrant_client.http.models import Prefetch, QueryRequest, FusionQuery
+
 
 docs = []
 
@@ -73,13 +75,19 @@ for i, chunk in enumerate(all_chunks):
         }]
     )
 
-def dense_retrieval(query, top_k=5):
-    results=client.search(
+def hybrid_retrieval(query, top_k=5):
+    
+    results = client.query_points(
         collection_name="docs",
-        query_vector=("dense",get_dense(query)),
+        prefetch=[
+            Prefetch(query=get_dense(query), using="dense", limit=top_k * 2),
+            Prefetch(query=get_learned_sparse(query), using="sparse", limit=top_k * 2)
+        ],
+        query=FusionQuery(fusion="rrf"),  
         limit=top_k
     )
-    return [(r.payload["text"], r.score) for r in results]
+    
+    return [(r.payload["text"], r.score) for r in results.points]
 
-for text, score in dense_retrieval("neural matching models"):
+for text, score in hybrid_retrieval("neural matching models"):
     print(f"  {score:.4f}: {text}")
