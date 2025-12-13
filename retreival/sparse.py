@@ -20,6 +20,28 @@ all_chunks = []
 for doc in docs:
   all_chunks.extend(chunk_by_tokens(doc, 50))
 
+def splade(model_name):
+    tokenizer = AutoTokenizer.from_pretrained(model_name)
+    model = AutoModel.from_pretrained(model_name).eval()
+    
+    def encode(text):
+        inputs = tokenizer(text, return_tensors="pt", max_length=512, truncation=True)
+        with torch.no_grad():
+            reps = model(**inputs)
+            d_rep = reps.d_rep if hasattr(reps, "d_rep") else reps.last_hidden_state
+            vec = torch.log1p(torch.relu(d_rep))
+            vec = torch.max(vec, dim=1).values.squeeze()
+            indices = vec.nonzero(as_tuple=True)[0]
+            values = vec[indices].cpu().numpy()
+            indices = indices.cpu().numpy()
+        return dict(zip(map(int, indices), map(float, values)))
+    
+    return encode
+
+def get_learned_sparse(text):
+    return splade_encoder(text)
+
+
 client = QdrantClient(":memory:")
 client.create_collection(
     collection_name="docs",
